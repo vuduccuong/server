@@ -13,8 +13,13 @@ const {MONGOURI} = require('./keys');
 require('./model/user');
 require('./model/post');
 
+const corsOptions = {
+    origin: 'https://intagram-cl0ne.herokuapp.com/',
+    optionsSuccessStatus: 200, // For legacy browser support
+    methods: "GET, PUT,POST, PATCH"
+}
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -47,7 +52,6 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'));
  });
 
- app.use(cors());
 app.listen(PORT, () => {
     console.log('app running on ', PORT);
 });
