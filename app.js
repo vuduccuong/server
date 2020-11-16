@@ -47,6 +47,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'));
  });
 
+ app.use(cors());
 app.listen(PORT, () => {
     console.log('app running on ', PORT);
 });
